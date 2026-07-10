@@ -24,7 +24,7 @@ jobs:
         run: |
          docker build \
           -f src/Web/Dockerfile \
-          -t ${{ env.ACR_LOGIN_SERVER }}/${{ env.TAG_NAME }} .
+          -t ${{ env.ACR_LOGIN_SERVER }}${{ env.TAG_NAME }} .
           docker push ${{ env.acr_login_server }}/${{ env.TAG_NAME }}
 
 
