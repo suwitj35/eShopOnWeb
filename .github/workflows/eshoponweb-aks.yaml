@@ -1,23 +1,25 @@
 name: container workflow
-on: workflow_dispatch:
+
+on: workflow_dispatch
+
 env:
   acr_login_server: aistraining.azurecr.io
   TAG_NAME: eshoponweb_suwit_V001
-job: 
+jobs: 
   build-container:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source code
         uses: actions/checkout@v7.0.0
-
+  
       - name: Acr Login
         uses: docker/login-action@v4.4.0
         with:
-          login-server: ${{ env.acr_login_server }}
+          registry: ${{ env.acr_login_server }}
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
-
-
+  
+  
       - name: Build and Push Image
         run: |
           docker build . -t ${{ env.acr_login_server }}/${{ env.TAG_NAME }}
