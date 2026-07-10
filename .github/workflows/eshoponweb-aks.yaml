@@ -22,7 +22,7 @@ jobs:
   
       - name: Build and Push Image
         run: |
-          docker build . -t ${{ env.acr_login_server }}/${{ env.TAG_NAME }}
+          docker build ./dockerfile  -t ${{ env.acr_login_server }}/${{ env.TAG_NAME }}
           docker push ${{ env.acr_login_server }}/${{ env.TAG_NAME }}
 
 
