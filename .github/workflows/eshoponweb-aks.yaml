@@ -1,3 +1,4 @@
+
 name: Container Workflow
 on: workflow_dispatch
  
@@ -5,6 +6,8 @@ env:
   ACR_LOGIN_SERVICE: aistraining.azurecr.io
   TAG_NAME: eshopping_suwit:1.0.0
   IMAGE_NAME: aistraining.azurecr.io/eshopping_suwit:1.0.0
+  resource-group: rg-023
+  cluster-name: aks-demo
  
 jobs:
   build:
@@ -24,4 +27,28 @@ jobs:
         run: |
           docker build -f src/Web/Dockerfile -t ${{ env.ACR_LOGIN_SERVICE }}/${{ env.TAG_NAME }} .
           docker push ${{ env.ACR_LOGIN_SERVICE }}/${{ env.TAG_NAME }}
+deploy-to-aks:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+
+      - name: Checkout code
+      - uses: actions/checkout@v7.0.0
+      - use: azure/aks-set-context@v1 
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          cluster-name: ${{ env.cluster-name }}
+          resource-group: ${{ env.resource-group }}
+     
+      - uses: azure/k8s-deploy@v1
+        with :
+        manifests: |
+            .k8s/deployment.yaml
+            .k8s/service.yaml
+          images: ${{ env.ACR_LOGIN_SERVER }}/${{ env.TAG_NAME }}
+
+            
+
+
  
+   
