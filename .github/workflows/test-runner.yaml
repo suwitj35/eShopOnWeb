@@ -1,4 +1,4 @@
-name: Test runner
+name: Test Runner
 on: workflow_dispatch
 jobs:
   test-runner:
@@ -7,4 +7,4 @@ jobs:
       - docker
       - javascript
     steps:
-      - run: echo "Test eecho in first github runner"
+     - run: echo "Test echo in first github runner"
