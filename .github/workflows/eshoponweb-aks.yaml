@@ -4,13 +4,13 @@ on: workflow_dispatch
 
 env:
   acr_login_server: aistraining.azurecr.io
-  TAG_NAME: eshoponweb_suwitv1.0.0
+  TAG_NAME: eshoponweb_suwit:1.0.0
 jobs: 
   build-container:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source code
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@7.0.0
   
       - name: Acr Login
         uses: docker/login-action@v4.4.0
