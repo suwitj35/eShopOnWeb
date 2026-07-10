@@ -5,11 +5,12 @@ env:
   ACR_LOGIN_SERVICE: aistraining.azurecr.io
   TAG_NAME: eshopping_suwit:1.0.0
   IMAGE_NAME: aistraining.azurecr.io/eshopping_suwit:1.0.0
-  resource-group: rg-023
+  resource-group: ais-training
   cluster-name: aks-demo
  
 jobs:
-  build:
+  build-Container:
+    if: false 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
