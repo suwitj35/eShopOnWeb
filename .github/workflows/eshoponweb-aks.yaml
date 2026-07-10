@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 env:
   acr_login_server: aistraining.azurecr.io
-  TAG_NAME: eshoponweb_suwit_V001
+  TAG_NAME: eshoponweb_suwit:1.0.0
 jobs: 
   build-container:
     runs-on: ubuntu-latest
