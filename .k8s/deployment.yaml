@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: eshoponweb-suwit
   name: webapp
   labels:
     app: sample-app
